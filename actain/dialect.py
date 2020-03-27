@@ -53,7 +53,7 @@ class ActainCompiler(sa.sql.compiler.SQLCompiler):
 
 
 class ActainDialect(sa.engine.default.DefaultDialect):
-    name = 'pervasive'
+    name = 'actain'
     statement_compiler = ActainCompiler
 
     def get_table_names(self, connection, schema=None, **kw):
