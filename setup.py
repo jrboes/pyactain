@@ -1,21 +1,22 @@
 import setuptools
 
 
-with open('readme.md', 'r') as f:
+with open('README.md', 'r') as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="pyactain",
+    name='pyactain',
     version='0.0.1',
-    author="Jacob Boes",
-    author_email="jacob.boes@gmail.com",
-    url="https://github.com/jrboes/pyactain",
-    license="MIT",
-    description="Python SQLAlchemy Dialect for Actain PSQL",
+    author='Jacob Boes',
+    author_email='jacob.boes@gmail.com',
+    url='https://github.com/jrboes/pyactain',
+    download_url='https://github.com/jrboes/pyactain/archive/v0.0.1.tar.gz',
+    license='MIT',
+    description='Python SQLAlchemy Dialect for Actain PSQL',
     long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description_content_type='text/markdown',
     classifiers=[
-        'Development Status :: 1 - Planning',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
