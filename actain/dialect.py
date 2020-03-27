@@ -1,46 +1,44 @@
+import sqlalchemy as sa
 import sqlalchemy.connectors.pyodbc
-import sqlalchemy.engine.default
-import sqlalchemy.sql.compiler
-import sqlalchemy.types
-import sqlalchemy.exc
+
 
 tmap = {
-    0: sqlalchemy.types.String,
-    1: sqlalchemy.types.Integer,
-    2: sqlalchemy.types.Float,
-    3: sqlalchemy.types.Date,
-    4: sqlalchemy.types.Time,
-    5: sqlalchemy.types.Float,
-    6: sqlalchemy.types.Float,
-    7: sqlalchemy.types.Boolean,
-    8: sqlalchemy.types.Float,
-    9: sqlalchemy.types.Float,
-    11: sqlalchemy.types.String,
-    13: sqlalchemy.types.String,
-    14: sqlalchemy.types.Integer,
-    15: sqlalchemy.types.Integer,
-    16: sqlalchemy.types.Boolean,
-    17: sqlalchemy.types.Float,
-    18: sqlalchemy.types.Float,
-    19: sqlalchemy.types.Float,
-    20: sqlalchemy.types.TIMESTAMP,
-    21: sqlalchemy.types.String,
-    25: sqlalchemy.types.String,
-    26: sqlalchemy.types.String,
-    28: sqlalchemy.types.Float,
-    29: sqlalchemy.types.Float,
-    30: sqlalchemy.types.DateTime,
-    31: sqlalchemy.types.Float,
+    0: sa.types.String,
+    1: sa.types.Integer,
+    2: sa.types.Float,
+    3: sa.types.Date,
+    4: sa.types.Time,
+    5: sa.types.Float,
+    6: sa.types.Float,
+    7: sa.types.Boolean,
+    8: sa.types.Float,
+    9: sa.types.Float,
+    11: sa.types.String,
+    13: sa.types.String,
+    14: sa.types.Integer,
+    15: sa.types.Integer,
+    16: sa.types.Boolean,
+    17: sa.types.Float,
+    18: sa.types.Float,
+    19: sa.types.Float,
+    20: sa.types.TIMESTAMP,
+    21: sa.types.String,
+    25: sa.types.String,
+    26: sa.types.String,
+    28: sa.types.Float,
+    29: sa.types.Float,
+    30: sa.types.DateTime,
+    31: sa.types.Float,
 }
 
 
-class ActainCompiler(sqlalchemy.sql.compiler.SQLCompiler):
+class ActainCompiler(sa.sql.compiler.SQLCompiler):
     def get_select_precolumns(self, select):
         s = 'DISTINCT ' if select._distinct else ''
         if select._limit:
             s += 'TOP {0} '.format(select._limit)
         if select._offset:
-            raise sqlalchemy.exc.InvalidRequestError(
+            raise sa.exc.InvalidRequestError(
                 "Pervasive PSQL does not support limit with an offset")
         return s
 
@@ -54,7 +52,7 @@ class ActainCompiler(sqlalchemy.sql.compiler.SQLCompiler):
         return '0'
 
 
-class ActainDialect(sqlalchemy.engine.default.DefaultDialect):
+class ActainDialect(sa.engine.default.DefaultDialect):
     name = 'pervasive'
     statement_compiler = ActainCompiler
 
@@ -82,7 +80,7 @@ class ActainDialect(sqlalchemy.engine.default.DefaultDialect):
             v = f'{c[2]:015b}'
             typ = tmap[c[1]]
             if v[-13] == '1':
-                typ = sqlalchemy.types.LargeBinary
+                typ = sa.types.LargeBinary
             data = {
                 'name': c[0],
                 'type': typ,

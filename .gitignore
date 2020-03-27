@@ -1,2 +1,2 @@
-sqlalchemy_pervasive.egg-info
+*.egg-info
 __pycache__

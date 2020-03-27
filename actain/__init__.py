@@ -1,6 +1,6 @@
-import sqlalchemy.dialects.registry
+import sqlalchemy as sa
 
-sqlalchemy.dialects.registry.register(
+sa.dialects.registry.register(
     'actain.pyodbc',
     'actain.dialect',
     'PyODBCActain'
