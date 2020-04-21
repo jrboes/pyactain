@@ -1,5 +1,6 @@
 import sqlalchemy as sa
 import sqlalchemy.connectors.pyodbc
+from .connector import TurbODBCConnector
 
 
 tmap = {
@@ -182,5 +183,8 @@ class ActainDialect(sa.engine.default.DefaultDialect):
 class PyODBCActain(
         sqlalchemy.connectors.pyodbc.PyODBCConnector,
         ActainDialect):
+    pass
 
+
+class TurbODBCActain(TurbODBCConnector, ActainDialect):
     pass

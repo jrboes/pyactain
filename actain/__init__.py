@@ -5,3 +5,9 @@ sa.dialects.registry.register(
     'actain.dialect',
     'PyODBCActain'
 )
+
+sa.dialects.registry.register(
+    'actain.tubodbc',
+    'actain.dialect',
+    'TurbODBCActain'
+)
