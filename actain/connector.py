@@ -54,20 +54,21 @@ class TurbODBCConnector(sa.connectors.Connector):
         """
 
         options = url.translate_connect_args(username='user')
-
         query = url.query
         options.update(query)
 
         connect_args = {}
 
         # first get the Turbodbc specific options
-        turbodbc_options = {}
+        turbodbc_options = {'read_buffer_size': turbodbc.Rows(50000)}
         for param in ('read_buffer_size', 'parameter_sets_to_buffer',
                       'use_async_io'):
             if param in options:
                 raw = options.pop(param)
                 if param == 'use_async_io':
                     value = sa.util.asbool(raw)
+                if param == 'read_buffer_size':
+                    value = turbodbc.Rows(sa.util.asint(raw))
                 else:
                     value = sa.util.asint(raw)
                 turbodbc_options[param] = value
