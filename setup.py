@@ -6,11 +6,11 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name='pyactain',
-    version='0.0.2',
+    version='0.0.3',
     author='Jacob Boes',
     author_email='jacobboes@gmail.com',
     url='https://github.com/jrboes/pyactain',
-    download_url='https://github.com/jrboes/pyactain/archive/v0.0.2.tar.gz',
+    download_url='https://github.com/jrboes/pyactain/archive/v0.0.3.tar.gz',
     license='MIT',
     description='Python SQLAlchemy Dialect for Actain PSQL',
     long_description=long_description,
